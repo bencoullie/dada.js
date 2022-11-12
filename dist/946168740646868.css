@@ -1,0 +1,10 @@
+h1 {
+  color: 'tomato';
+}
+button {
+  background-color: 'tomato';
+  color: white;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 10px;
+}

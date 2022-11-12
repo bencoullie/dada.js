@@ -1,0 +1,14 @@
+{
+  "name": "first-attempt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "deno run --allow-read --allow-write ./poopy/compile.ts",
+    "dev": "deno run --allow-net --allow-read --allow-write ./poopy/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

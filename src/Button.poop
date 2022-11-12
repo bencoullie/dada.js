@@ -1,0 +1,19 @@
+💩
+  window.clickPoop = () => {
+    confirm('Is this the next React?');
+  };
+💩
+
+🧻
+  <button onclick="window.clickPoop">{ PoopProps.text }</button>
+🧻
+
+🚽
+  button {
+    background-color: 'tomato';
+    color: white;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+  }
+🚽
