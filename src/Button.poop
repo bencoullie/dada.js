@@ -5,12 +5,15 @@
 💩
 
 🧻
-  <button onclick="window.clickPoop">{ PoopProps.text }</button>
+  <div>
+    <TextPoop></TextPoop>
+    <button onclick="window.clickPoop">should click poop</button>
+  </div>
 🧻
 
 🚽
   button {
-    background-color: 'tomato';
+    background-color: tomato;
     color: white;
     border: 1px solid #eee;
     border-radius: 5px;

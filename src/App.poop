@@ -9,7 +9,7 @@ TODO: handle this shit -> <p>And 2 + 2 = {2 + 2}</p>
 🧻
   <div>
     <h1>It is pointless</h1>
-    <ButtonPoop text="haha yes."></ButtonPoop>
+    <ButtonPoop></ButtonPoop>
   </div>
 🧻
 

@@ -10,7 +10,7 @@ const generateFiles = async (componentWrapper: ComponentWrapper) => {
   }
 
   const jsFile = isJs
-    ? `window.poopComponents = ${JSON.stringify(componentWrapper)}`
+    ? `window.poopComponentWrapper = ${JSON.stringify(componentWrapper)}`
     : ''
 
   if (jsFile || cssFile) {
@@ -22,18 +22,34 @@ const generateFiles = async (componentWrapper: ComponentWrapper) => {
     await Deno.mkdir('dist')
   }
 
-  const htmlFile = await Deno.readTextFile('./src/index.html')
-  Deno.writeTextFile('dist/index.html', htmlFile)
+  let htmlFile = await Deno.readTextFile('./src/public/index.html')
+  const placeInHeadToChange = '</head>'
 
   if (jsFile) {
     const uniqueNumber = Math.floor(Math.random() * 1000000000000000)
-    Deno.writeTextFile(`dist/${uniqueNumber}.js`, jsFile)
+    const htmlGenerator = await Deno.readTextFile(`./poopy/generateHtml.js`)
+
+    htmlFile = htmlFile.replace(
+      placeInHeadToChange,
+      `  <script defer src="./app-${uniqueNumber}.js"></script>\r\n${placeInHeadToChange}`
+    )
+
+    const finalJsFile = `${jsFile}\n${htmlGenerator}`
+    Deno.writeTextFile(`dist/app-${uniqueNumber}.js`, finalJsFile)
   }
 
   if (cssFile) {
     const uniqueNumber = Math.floor(Math.random() * 1000000000000000)
+
+    htmlFile = htmlFile.replace(
+      placeInHeadToChange,
+      `    <link rel="stylesheet" href="./${uniqueNumber}.css" />\r\n  ${placeInHeadToChange}`
+    )
+
     Deno.writeTextFile(`dist/${uniqueNumber}.css`, cssFile)
   }
+
+  Deno.writeTextFile('dist/index.html', htmlFile)
 }
 
 export { generateFiles }

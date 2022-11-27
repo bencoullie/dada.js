@@ -22,9 +22,6 @@ const generateComponentWrapper = (rawPoopComponents: RawComponent[]) => {
     if (style) componentWrapper[name].style = style
   })
 
-  // eslint-disable-next-line no-console
-  console.log('componentWrapper:', componentWrapper)
-
   return componentWrapper
 }
 

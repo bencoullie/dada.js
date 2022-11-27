@@ -1,27 +1,17 @@
 import { serve } from 'https://deno.land/std@0.159.0/http/server.ts'
+import staticFiles from 'https://deno.land/x/static_files@1.1.6/mod.ts'
 
-const port = 1337
+const port = 1337 as const
 
-const handler = async (request: Request): Promise<Response> => {
-  if (request.url.includes('main.js')) {
-    const mainScript = await Deno.readTextFile('./src/main.js')
-
-    return new Response(mainScript, {
-      headers: {
-        'content-type': 'application/javascript',
-      },
-    })
-  }
-
-  const indexFile = await Deno.readTextFile('./src/index.html')
-
-  return new Response(indexFile, {
-    headers: {
-      'content-type': 'text/html; charset=utf-8',
-    },
+const serveFiles = (request: Request) => {
+  return staticFiles('dist')({
+    request,
+    respondWith: (response: Response) => response,
   })
 }
 
-console.log(`HTTP webserver running. Access it at: http://localhost:${port}/`)
+// TODO consider live reloading: https://deno.land/x/livereload@0.1.0
 
-await serve(handler, { port })
+await serve((req) => serveFiles(req), { port })
+
+console.log(`Poop application running. Access it at: http://localhost:${port}/`)

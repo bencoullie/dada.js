@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile": "deno run --allow-read --allow-write ./poopy/compile.ts",
-    "dev": "deno run --allow-net --allow-read --allow-write ./poopy/server.ts"
+    "serve": "deno run --allow-net --allow-read --allow-write ./poopy/server.ts",
+    "dev": "pnpm run compile && pnpm run serve"
   },
   "keywords": [],
   "author": "",
