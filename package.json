@@ -6,7 +6,8 @@
   "scripts": {
     "compile": "deno run --allow-read --allow-write ./poopy/compile.ts",
     "serve": "deno run --allow-net --allow-read --allow-write ./poopy/server.ts",
-    "dev": "pnpm run compile && pnpm run serve"
+    "dev": "pnpm run compile && pnpm run serve",
+    "watch": "deno run --allow-net --allow-read --allow-write --allow-run ./poopy/watch.ts"
   },
   "keywords": [],
   "author": "",

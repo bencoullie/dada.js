@@ -15,6 +15,6 @@ TODO: handle this shit -> <p>And 2 + 2 = {2 + 2}</p>
 
 🚽
   h1 {
-    color: 'tomato';
+    color: tomato;
   }
 🚽

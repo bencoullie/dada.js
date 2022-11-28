@@ -1,13 +1,17 @@
 💩
-  window.clickPoop = () => {
+  clickPoop = () => {
     confirm('Is this the next React?');
+  };
+  haha = () => {
+    console.log('Haha!');
   };
 💩
 
 🧻
   <div>
     <TextPoop></TextPoop>
-    <button onclick="window.clickPoop">should click poop</button>
+    <button onclick="clickPoop()">should click poop</button>
+    <button onclick="haha()">haha</button>
   </div>
 🧻
 

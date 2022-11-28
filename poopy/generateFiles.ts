@@ -1,11 +1,9 @@
 import { ComponentWrapper } from './types.ts'
 
 const generateFiles = async (componentWrapper: ComponentWrapper) => {
-  let cssFile = ''
   let isJs = false
 
   for (const [_, value] of Object.entries(componentWrapper)) {
-    if (value.style) cssFile += value.style
     if (value.script) isJs = true
   }
 
@@ -13,7 +11,7 @@ const generateFiles = async (componentWrapper: ComponentWrapper) => {
     ? `window.poopComponentWrapper = ${JSON.stringify(componentWrapper)}`
     : ''
 
-  if (jsFile || cssFile) {
+  if (jsFile) {
     try {
       await Deno.remove('dist', { recursive: true })
       // deno-lint-ignore no-empty
@@ -27,7 +25,7 @@ const generateFiles = async (componentWrapper: ComponentWrapper) => {
 
   if (jsFile) {
     const uniqueNumber = Math.floor(Math.random() * 1000000000000000)
-    const htmlGenerator = await Deno.readTextFile(`./poopy/generateHtml.js`)
+    const htmlGenerator = await Deno.readTextFile(`./poopy/runApp.js`)
 
     htmlFile = htmlFile.replace(
       placeInHeadToChange,
@@ -36,17 +34,6 @@ const generateFiles = async (componentWrapper: ComponentWrapper) => {
 
     const finalJsFile = `${jsFile}\n${htmlGenerator}`
     Deno.writeTextFile(`dist/app-${uniqueNumber}.js`, finalJsFile)
-  }
-
-  if (cssFile) {
-    const uniqueNumber = Math.floor(Math.random() * 1000000000000000)
-
-    htmlFile = htmlFile.replace(
-      placeInHeadToChange,
-      `    <link rel="stylesheet" href="./${uniqueNumber}.css" />\r\n  ${placeInHeadToChange}`
-    )
-
-    Deno.writeTextFile(`dist/${uniqueNumber}.css`, cssFile)
   }
 
   Deno.writeTextFile('dist/index.html', htmlFile)
