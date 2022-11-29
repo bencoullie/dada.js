@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "deno run --allow-read --allow-write ./poopy/compile.ts",
-    "serve": "deno run --allow-net --allow-read --allow-write ./poopy/server.ts",
+    "compile": "deno run --allow-read --allow-write ./poopy/compiler/compile.ts",
+    "serve": "deno run --allow-net --allow-read --allow-write ./poopy/compiler/server.ts",
     "dev": "pnpm run compile && pnpm run serve",
-    "watch": "deno run --allow-net --allow-read --allow-write --allow-run ./poopy/watch.ts"
+    "watch": "deno run --allow-net --allow-read --allow-write --allow-run ./poopy/compiler/watch.ts"
   },
   "keywords": [],
   "author": "",
